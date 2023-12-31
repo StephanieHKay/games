@@ -187,7 +187,7 @@ def hit_or_stand(deck,hand):
 
 #show cards played
 def show_some(player, dealer):
-    print(f"Dealer cards: \nHIDDEN,")
+    print(f"Dealer cards: \nHIDDEN FIRST CARD,")
     for card in dealer.cards[1:]:
         print(f"{card}, ")
     print(f"Total dealer score: {dealer.value}\n")
