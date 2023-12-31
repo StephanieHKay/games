@@ -25,12 +25,9 @@ def main():
         player.add_card(game_deck.deal())
         player.add_card(game_deck.deal())
 
-    #set up the player chips
+    #set up the player chips and get the player's bet
         player_chips = Chips()
-
-    #prompt the player for their bet
-        #player_bet_amount = take_bet()
-
+    
     #show cards(with one dealer card hidden)
         print("\nInitial cards dealt! \n")
         show_some(player, dealer)
@@ -47,14 +44,14 @@ def main():
                 player_busts(player, dealer, player_chips)
                 playing = False
                 break
-            elif player.value == 21 and dealer_wins(player, dealer, player_chips):
+            elif player.value == 21 and player_wins(player, dealer, player_chips):
                 playing = False
                 break
 
         #if player hasnt busted, play dealers hand until dealer reaches 17
             while dealer.value < 17:
                 dealer.add_card(game_deck.deal())
-                show_some(player, dealer)
+                show_all(player, dealer)
             break
 
             #run differnet winning scenarios
