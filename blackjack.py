@@ -121,26 +121,30 @@ class Hand():
         self.cards.append(card)
         self.value += values[card.rank]
 
+        if card.rank == "Ace":
+            self.aces+=1
+#ace can be either 11 or 1 based on player game needs
     def adjust_for_ace(self):
-        values["Ace"] = 1
-        self.value = values["Ace"]
-        self.aces +=1
+        while self.value > 21 and self.aces > 0:
+            self.value -=10
+            self.aces -=1        
+            
 
 #class to track betting chips
 class Chips():
     def __init__(self):
         self.total = 100 #default
-        self.bet = 0
+        #self.bet = 0
         self.bet_amount = take_bet()
 
     def win_bet(self):
-        self.bet+=1
+        
         self.total = self.total + (self.bet_amount*2)
         print(f"Amount won: {self.bet_amount*2}")
 
 
     def lose_bet(self):
-        self.bet+=1
+        
         self.total=self.total - self.bet_amount
         print(f"Amount lost: {self.bet_amount}")
 
