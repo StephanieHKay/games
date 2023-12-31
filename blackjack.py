@@ -135,27 +135,33 @@ class Chips():
     def __init__(self):
         self.total = 100 #default
         #self.bet = 0
-        self.bet_amount = take_bet()
+        while True:
+            self.bet_amount = take_bet()
+            if self.bet_amount <= self.total:
+                break
+            else:
+                print("You dont have enough chips!")
+                
 
     def win_bet(self):
         
         self.total = self.total + (self.bet_amount*2)
-        print(f"Amount won: {self.bet_amount*2}")
+        print(f"Amount won: {self.bet_amount*2} chips.")
 
 
     def lose_bet(self):
         
         self.total=self.total - self.bet_amount
-        print(f"Amount lost: {self.bet_amount}")
+        print(f"Amount lost: {self.bet_amount} chips.")
 
 
 #asking user for bet amount
 def take_bet():
     while True:
-        bet_amount = input("Place your bet amount, numbers only: ")
+        bet_amount = input("Place your bet chip amount, numbers only: ")
         try:
             bet_amount = int(bet_amount)
-            print(f"You have bet £{bet_amount}.")
+            print(f"You have bet {bet_amount} chips.")
             return bet_amount
         except:
             print("That as not a number.")
