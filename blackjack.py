@@ -61,7 +61,7 @@ def main():
         dealer_wins(player, dealer, player_chips)
         dealer_busts(player, dealer, player_chips)
         player_wins(player, dealer, player_chips)
-        push(player, dealer, player_chips)
+        push(player, dealer)
 
             #show all cards
         print(f"\nCards at end of game: ")
@@ -158,7 +158,7 @@ class Chips():
 #asking user for bet amount
 def take_bet():
     while True:
-        bet_amount = input("Place your bet chip amount, numbers only: ")
+        bet_amount = input("Place your bet chip amount: ")
         try:
             bet_amount = int(bet_amount)
             print(f"You have bet {bet_amount} chips.")
@@ -212,7 +212,7 @@ def show_all(player,dealer):
 #check game outcomes
 def player_busts(players_hand, dealers_hand, chips):
     if players_hand.value > 21 and dealers_hand.value < 21:
-        print("Player bust! :-(")
+        print("Player bust! Dealer Won")
         chips.lose_bet()
 
 def player_wins(players_hand,dealers_hand, chips):
@@ -222,7 +222,7 @@ def player_wins(players_hand,dealers_hand, chips):
 
 def dealer_busts(players_hand,dealers_hand,chips):
     if dealers_hand.value > 21 and players_hand.value < 21:
-        print("Dealer bust!")
+        print("Dealer bust! Player Won")
         chips.win_bet()
 
 def dealer_wins(players_hand,dealers_hand,chips):
@@ -230,10 +230,10 @@ def dealer_wins(players_hand,dealers_hand,chips):
         print("Dealer wins!")
         chips.lose_bet()
 
-def push(players_hand,dealers_hand,chips):
-    if players_hand.value <= 21 and dealers_hand.value <= 21 and (dealers_hand.value == players_hand.value):
-        print("Truce!")
-        chips.lose_bet()
+def push(players_hand,dealers_hand):
+    if players_hand.value == 21 and dealers_hand.value == 21 and (dealers_hand.value == players_hand.value):
+        print("Tie!")
+        #chips.lose_bet()
 
 
 
