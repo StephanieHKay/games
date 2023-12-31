@@ -170,13 +170,9 @@ def take_bet():
 def hit(deck,hand):
     dealt_card = deck.deal()
     hand.add_card(dealt_card)
+    hand.adjust_for_ace()
 
-    if dealt_card.rank == "Ace":
-        change_ace_value = input("Make Ace 1 instead of 11? y/n ")
-        if change_ace_value.lower() == "y":
-            hand.adjust_for_ace()
-
-
+   
 def hit_or_stand(deck,hand):
     global playing
 
@@ -184,6 +180,7 @@ def hit_or_stand(deck,hand):
     if to_hit.lower() == "hit":
         hit(deck,hand)
     elif to_hit.lower() == "stand":
+        print("Player stands, Dealer's turn to play")
         playing = False
     else:
         print("invalid entry.")
